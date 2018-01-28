@@ -24,9 +24,7 @@ class FastShortestPathSolver
     /** @throws BeijingNotFoundException */
     private function guardBeijingExists(Cities $cities)
     {
-        $cityNames = array_map(function(City $city) { return $city->getName(); }, $cities->getCities());
-
-        if (!in_array("Beijing", $cityNames))
+        if (!in_array("Beijing", $cities->getCityNames()))
             throw new BeijingNotFoundException;
     }
 
@@ -36,8 +34,7 @@ class FastShortestPathSolver
         $shortestPath = [];
         $shortestPath[0] = "Beijing";
 
-        for($i=1; $i<count($cities->getCities()); $i++)
-        {
+        for ($i = 1; $i < $cities->getTotalCities(); $i++) {
             $shortestPath[$i] = $this->getClosestCityNotVisited($shortestPath[$i - 1], $shortestPath, $sortedDistances);
         }
 
@@ -47,27 +44,23 @@ class FastShortestPathSolver
     private function getClosestCityNotVisited(string $currentCity, array $visitedCitiesNames, array $sortedDistances): string
     {
         $resultCity = "";
-        foreach($sortedDistances[$currentCity] as $cityTo => $distance)
-        {
-           if (!in_array($cityTo, $visitedCitiesNames)) {
-               $resultCity = $cityTo;
-               break;
-           }
+        foreach ($sortedDistances[$currentCity] as $cityTo => $distance) {
+            if (!in_array($cityTo, $visitedCitiesNames)) {
+                $resultCity = $cityTo;
+                break;
+            }
         }
 
-       return $resultCity;
+        return $resultCity;
     }
 
     private function allDistanceCitiesSorted(Cities $cities): array
     {
         $distances = [];
 
-        foreach($cities->getCities() as $cityFrom)
-        {
-            foreach ($cities->getCities() as $cityTo)
-            {
-                if (!$cityFrom->isEqual($cityTo))
-                {
+        foreach ($cities->getCities() as $cityFrom) {
+            foreach ($cities->getCities() as $cityTo) {
+                if (!$cityFrom->isEqual($cityTo)) {
                     $distance = $this->mileDistance($cityFrom, $cityTo);
                     $distances[$cityFrom->getName()][$cityTo->getName()] = $distance;
                 }
@@ -94,7 +87,5 @@ class FastShortestPathSolver
                 cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
 
         return $angle * $earthRadius;
-
     }
-
 }

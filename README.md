@@ -44,6 +44,12 @@ In the project root:
 
     php solve.php
     
+## Run tests
+In the project root:
+
+    vendor/bin/phpunit
+
+    
 ## References
 
 - [Wikipedia - Travelling Salesman Problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)

@@ -13,11 +13,21 @@ class Cities
         $this->cities = $cities;
     }
 
-    /**
-     * @return City[]
-     */
+    /** @return City[] */
     public function getCities(): array
     {
         return $this->cities;
+    }
+
+    public function getCityNames(): array
+    {
+        return array_map(function (City $city) {
+            return $city->getName();
+        }, $this->getCities());
+    }
+
+    public function getTotalCities(): int
+    {
+        return count($this->getCities());
     }
 }
