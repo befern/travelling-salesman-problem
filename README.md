@@ -46,6 +46,6 @@ In the project root:
     
 ## References
 
-[I'm an inline-style link] (https://en.wikipedia.org/wiki/Travelling_salesman_problem)
-[I'm an inline-style link] (https://en.wikipedia.org/wiki/Branch_and_bound)
-[I'm an inline-style link] (http://cs.indstate.edu/cpothineni/alg.pdf)
+- [Wikipedia - Travelling Salesman Problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+- [Wikipedia - Branch And Bound](https://en.wikipedia.org/wiki/Branch_and_bound)
+- [Travelling Salesman Problem using Branch and Bound Approach](http://cs.indstate.edu/cpothineni/alg.pdf)
