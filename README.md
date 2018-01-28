@@ -1,4 +1,4 @@
-#Travelling Salesman Problem TSP
+# Travelling Salesman Problem TSP
 
 This project implements one way to solve the TSP for 32 cities without coming back to the start (Hamiltonian Path), 
 which is an old problem about computing the shortest path for visiting all cities in a list without repeating any city.
@@ -23,24 +23,29 @@ To add to this project remains:
 
 
 
-##Requirements
+## Requirements
+
 PHP 7.0
 
 Composer
 
-##How to install
+## How to install
+
     git clone https://github.com/befern/travelling-salesman-problem
     composer install
 
-##Build Status
+## Build Status
+
 [![Build Status](https://travis-ci.org/befern/travelling-salesman-problem.svg?branch=master)](https://travis-ci.org/befern/travelling-salesman-problem)
 
-##Run solver
+## Run solver
+
 In the project root:
 
     php solve.php
     
-##References
-[I'm an inline-style link] https://en.wikipedia.org/wiki/Travelling_salesman_problem
-[I'm an inline-style link] https://en.wikipedia.org/wiki/Branch_and_bound
-[I'm an inline-style link] http://cs.indstate.edu/cpothineni/alg.pdf
+## References
+
+[I'm an inline-style link] (https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+[I'm an inline-style link] (https://en.wikipedia.org/wiki/Branch_and_bound)
+[I'm an inline-style link] (http://cs.indstate.edu/cpothineni/alg.pdf)
