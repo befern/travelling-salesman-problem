@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Test\Salesman;
-
 
 use Salesman\Cities;
 use Salesman\CitiesRepository;

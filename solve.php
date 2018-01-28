@@ -7,6 +7,6 @@ use Salesman\InFileCitiesRepository;
 
 $solver = new FastShortestPathSolver(new InFileCitiesRepository($_SERVER['DOCUMENT_ROOT'] . "cities.txt"));
 
-echo implode("\n", $solver->resolve());
+echo implode("\n", $solver->resolve()) . "\n";
 
 

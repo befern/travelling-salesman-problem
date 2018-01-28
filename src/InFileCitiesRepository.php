@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Salesman;
 
 use League\Csv\Reader;
