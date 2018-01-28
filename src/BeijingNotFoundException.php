@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Salesman;
-
 
 use League\Csv\Exception;
 
