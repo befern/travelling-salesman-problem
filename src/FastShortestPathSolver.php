@@ -11,45 +11,54 @@ class FastShortestPathSolver
         $this->citiesRepository = $citiesRepository;
     }
 
-    public function resolve(): string
+    /** @throws BeijingNotFoundException */
+    public function resolve(): array
     {
         $cities = $this->citiesRepository->cities();
-        $path = $this->findShortestPathByClosestNextPoint($cities);
 
-        return implode(",", $path);
+        $this->guardBeijingExists($cities);
+
+        return $this->findShortestPathByClosestNextPoint($cities);
+    }
+
+    /** @throws BeijingNotFoundException */
+    private function guardBeijingExists(Cities $cities)
+    {
+        $cityNames = array_map(function(City $city) { return $city->getName(); }, $cities->getCities());
+
+        if (!in_array("Beijing", $cityNames))
+            throw new BeijingNotFoundException;
     }
 
     private function findShortestPathByClosestNextPoint(Cities $cities): array
     {
-        $sortedDistances = $this->allDistancesSorted($cities);
-        $path = [];
-        $path[0] = "Beijing";
-        $currentCity = $path[0];
+        $sortedDistances = $this->allDistanceCitiesSorted($cities);
+        $shortestPath = [];
+        $shortestPath[0] = "Beijing";
 
         for($i=1; $i<count($cities->getCities()); $i++)
         {
-            $path[$i] = $this->getClosestCityNotVisited($currentCity, $path, $sortedDistances);
-            $currentCity = $path[$i];
+            $shortestPath[$i] = $this->getClosestCityNotVisited($shortestPath[$i - 1], $shortestPath, $sortedDistances);
         }
 
-        return $path;
+        return $shortestPath;
     }
 
     private function getClosestCityNotVisited(string $currentCity, array $visitedCitiesNames, array $sortedDistances): string
     {
         $resultCity = "";
         foreach($sortedDistances[$currentCity] as $cityTo => $distance)
-       {
+        {
            if (!in_array($cityTo, $visitedCitiesNames)) {
                $resultCity = $cityTo;
                break;
            }
-       }
+        }
 
        return $resultCity;
     }
 
-    private function allDistancesSorted(Cities $cities): array
+    private function allDistanceCitiesSorted(Cities $cities): array
     {
         $distances = [];
 
@@ -85,6 +94,7 @@ class FastShortestPathSolver
                 cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
 
         return $angle * $earthRadius;
-        
+
     }
+
 }

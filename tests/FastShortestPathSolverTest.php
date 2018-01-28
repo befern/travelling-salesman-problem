@@ -3,21 +3,15 @@
 namespace Test\Salesman;
 
 use PHPUnit\Framework\TestCase;
+use Salesman\BeijingNotFoundException;
 use Salesman\FastShortestPathSolver;
 
 class FastShortestPathSolverTest extends TestCase
 {
-    /** @var FastShortestPathSolver */
-    private $solve;
-
-    protected function setUp()
+    public function test_resolve_full_path()
     {
-        parent::setUp();
-        $this->solve = new FastShortestPathSolver(new InMemoryCitiesRepository());
-    }
+        $solver = new FastShortestPathSolver(new InMemoryCitiesRepository());
 
-    public function testResolveSimplePath()
-    {
         $this->assertEquals([
             'Beijing',
             'Vladivostok',
@@ -51,6 +45,15 @@ class FastShortestPathSolverTest extends TestCase
             'Cairo',
             'Lusaka',
             'Reykjavík'
-        ], $this->solve->resolve());
+        ], $solver->resolve());
+    }
+
+    public function test_fail_if_beijing_is_missing()
+    {
+        $solver = new FastShortestPathSolver(new InMemoryCitiesRepositoryWithoutBeijing());
+
+        $this->expectException(BeijingNotFoundException::class);
+
+        $solver->resolve();
     }
 }

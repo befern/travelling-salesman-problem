@@ -14,8 +14,8 @@ class InMemoryCitiesRepository implements CitiesRepository
     {
         return new Cities(
            [
-               new City("Beijing", 39.9, 116.40),
                new City("Tokyo", 35.40, 139.45),
+               new City("Beijing", 39.9, 116.40),
                new City("Vladivostok", 43.8, 131.54),
                new City("Dakar", 14.40, -17.28),
                new City("Singapore", 1.14, 103.55),
