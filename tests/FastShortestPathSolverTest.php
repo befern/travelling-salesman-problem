@@ -18,6 +18,39 @@ class FastShortestPathSolverTest extends TestCase
 
     public function testResolveSimplePath()
     {
-        $this->assertEquals("Beijing,Tokyo,Vladivostok", $this->solve->resolve());
+        $this->assertEquals([
+            'Beijing',
+            'Vladivostok',
+            'Tokyo',
+            'Bangkok',
+            'Singapore',
+            'Perth',
+            'Melbourne',
+            'Auckland',
+            'San Francisco',
+            'Vancouver',
+            'Anchorage',
+            'Toronto',
+            'New York',
+            'Caracas',
+            'San Jose',
+            'Mexico City',
+            'Lima',
+            'Rio',
+            'Santiago',
+            'Dakar',
+            'Accra',
+            'Casablanca',
+            'Paris',
+            'London',
+            'Prague',
+            'Moscow',
+            'Astana',
+            'New Delhi',
+            'Jerusalem',
+            'Cairo',
+            'Lusaka',
+            'Reykjavík'
+        ], $this->solve->resolve());
     }
 }
